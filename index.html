@@ -131,6 +131,45 @@
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        
+        /* CSS untuk efek sticky header mengecil */
+        .info-header-container {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            transition: all 0.3s ease;
+        }
+        
+        .info-header-large {
+            transition: all 0.3s ease;
+        }
+        
+        .info-header-small {
+            height: 60px !important;
+            background: #008069 !important;
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100%);
+            width: 100%;
+            max-width: 480px;
+            z-index: 50;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .info-header-small.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .info-header-small.hide {
+            transform: translateX(-50%) translateY(-100%);
+        }
+        
+        #info-screen {
+            scroll-behavior: smooth;
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -177,17 +216,36 @@
             </footer>
         </section>
 
-        <section id="info-screen" class="screen bg-[#f0f2f5] overflow-y-auto no-scrollbar">
-            <div class="relative">
-                <div class="absolute top-4 left-4 z-30 bg-black/20 w-8 h-8 rounded-full flex items-center justify-center text-white cursor-pointer" onclick="backToChat()"><i class="fas fa-arrow-left"></i></div>
-                <div class="relative w-full h-72 flex flex-col items-center justify-center bg-gray-900 overflow-hidden">
-                    <img src="foto_grup.webp" class="absolute w-full h-full object-cover blur-lg opacity-40 scale-110">
-                    <div class="relative z-10 w-32 h-32 rounded-full border-4 border-white/40 shadow-2xl overflow-hidden cursor-pointer mt-4" onclick="openLightbox(this.querySelector('img').src)">
-                        <img src="foto_grup.webp" class="w-full h-full object-cover">
+        <section id="info-screen" class="screen bg-[#f0f2f5] overflow-y-auto no-scrollbar relative">
+            <!-- Header KECIL yang muncul saat scroll -->
+            <div id="small-header" class="info-header-small flex items-center text-white px-4 py-3 hide" style="max-width:480px;">
+                <div class="mr-3 flex items-center cursor-pointer" onclick="backToChat()">
+                    <i class="fas fa-arrow-left mr-2 text-white"></i>
+                    <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white text-xs font-bold overflow-hidden">
+                        <img src="foto_grup.webp" class="w-full h-full object-cover" alt="foto grup" onerror="this.style.display='none';this.parentElement.innerHTML='A&A';">
                     </div>
-                    <div class="relative z-20 text-center text-white px-4 mt-4">
-                        <h1 class="text-2xl font-bold text-shadow">Nikahan <span class="text-sky-300">A</span>&<span class="text-pink-300">A</span> 💍</h1>
-                        <p class="text-sm opacity-95 text-shadow font-semibold mt-1">Grup · 3 Anggota</p>
+                </div>
+                <div class="flex-1 overflow-hidden">
+                    <h2 class="font-medium text-base truncate">Nikahan <span class="text-sky-300">A</span>&<span class="text-pink-300">A</span> 💍</h2>
+                    <p class="text-xs opacity-90 truncate">Info Grup</p>
+                </div>
+            </div>
+
+            <!-- Container untuk header besar -->
+            <div class="info-header-container">
+                <div id="large-header" class="info-header-large relative">
+                    <div class="absolute top-4 left-4 z-30 bg-black/20 w-8 h-8 rounded-full flex items-center justify-center text-white cursor-pointer" onclick="backToChat()">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                    <div class="relative w-full h-72 flex flex-col items-center justify-center bg-gray-900 overflow-hidden">
+                        <img src="foto_grup.webp" class="absolute w-full h-full object-cover blur-lg opacity-40 scale-110">
+                        <div class="relative z-10 w-32 h-32 rounded-full border-4 border-white/40 shadow-2xl overflow-hidden cursor-pointer mt-4" onclick="openLightbox(this.querySelector('img').src)">
+                            <img src="foto_grup.webp" class="w-full h-full object-cover">
+                        </div>
+                        <div class="relative z-20 text-center text-white px-4 mt-4">
+                            <h1 class="text-2xl font-bold text-shadow">Nikahan <span class="text-sky-300">A</span>&<span class="text-pink-300">A</span> 💍</h1>
+                            <p class="text-sm opacity-95 text-shadow font-semibold mt-1">Grup · 3 Anggota</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -527,6 +585,24 @@
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        // Efek header mengecil saat scroll di info screen
+        const infoScreen = document.getElementById('info-screen');
+        const smallHeader = document.getElementById('small-header');
+        
+        if (infoScreen && smallHeader) {
+            infoScreen.addEventListener('scroll', function() {
+                const scrollTop = infoScreen.scrollTop;
+                
+                if (scrollTop > 150) {
+                    smallHeader.classList.add('show');
+                    smallHeader.classList.remove('hide');
+                } else {
+                    smallHeader.classList.add('hide');
+                    smallHeader.classList.remove('show');
+                }
+            });
+        }
     </script>
 </body>
 </html>
