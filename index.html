@@ -167,6 +167,15 @@
             transform: translateX(-50%) translateY(-100%);
         }
         
+        /* Class untuk memberi padding ke konten saat header kecil muncul */
+        .info-content {
+            transition: padding-top 0.3s ease;
+        }
+        
+        .info-content.shifted {
+            padding-top: 60px;
+        }
+        
         #info-screen {
             scroll-behavior: smooth;
             position: relative;
@@ -256,73 +265,76 @@
                 </div>
             </div>
 
-            <div class="bg-white p-5 mb-2 shadow-sm">
-                <p class="text-[#008069] font-medium mb-2">Bismillahirrahmanirrahim</p>
-                <div class="text-gray-700 text-sm space-y-3 leading-relaxed">
-                    <p>Maha Suci Allah yang telah menciptakan mahluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan dalam ikatan pernikahan:</p>
-                    <div class="pl-3 border-l-2 border-[#008069]/30 py-1 bg-gray-50/50 rounded-r-lg">
-                        <p class="font-bold text-sky-400">Aditya Bayu Prasetyo, S.Tr.IP</p>
-                        <p class="text-xs text-gray-500 mb-2">Putra dari Bapak Sucipto & Ibu Siti Aminah</p>
-                        <p class="font-bold text-pink-400">& Amartha Ashfiana Nadhifa, S.A.P</p>
-                        <p class="text-xs text-gray-500">Putri dari Bapak Fatchudin & Ibu Euis Nadirotun</p>
+            <!-- BUNGKUS SEMUA KONTEN dengan div info-content -->
+            <div id="info-content" class="info-content">
+                <div class="bg-white p-5 mb-2 shadow-sm">
+                    <p class="text-[#008069] font-medium mb-2">Bismillahirrahmanirrahim</p>
+                    <div class="text-gray-700 text-sm space-y-3 leading-relaxed">
+                        <p>Maha Suci Allah yang telah menciptakan mahluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan dalam ikatan pernikahan:</p>
+                        <div class="pl-3 border-l-2 border-[#008069]/30 py-1 bg-gray-50/50 rounded-r-lg">
+                            <p class="font-bold text-sky-400">Aditya Bayu Prasetyo, S.Tr.IP</p>
+                            <p class="text-xs text-gray-500 mb-2">Putra dari Bapak Sucipto & Ibu Siti Aminah</p>
+                            <p class="font-bold text-pink-400">& Amartha Ashfiana Nadhifa, S.A.P</p>
+                            <p class="text-xs text-gray-500">Putri dari Bapak Fatchudin & Ibu Euis Nadirotun</p>
+                        </div>
+                        <div class="space-y-1 pt-2">
+                            <p><b>Akad Nikah:</b> Selasa, 12 Mei 2026 | 08:00 WIB</p>
+                            <p><b>Resepsi:</b> Selasa, 12 Mei 2026 | 11:00 - 14:00 WIB</p>
+                            <p><b>Lokasi:</b> Gedung Korpri Kabupaten Tegal</p>
+                        </div>
                     </div>
-                    <div class="space-y-1 pt-2">
-                        <p><b>Akad Nikah:</b> Selasa, 12 Mei 2026 | 08:00 WIB</p>
-                        <p><b>Resepsi:</b> Selasa, 12 Mei 2026 | 11:00 - 14:00 WIB</p>
-                        <p><b>Lokasi:</b> Gedung Korpri Kabupaten Tegal</p>
+                    <p class="text-xs text-gray-400 mt-4 border-t pt-2">Grup dibuat oleh <span class="text-sky-400">Aditya</span> & <span class="text-pink-400">Amartha</span>, 6 April 2025</p>
+                </div>
+
+                <div class="bg-white mb-2 shadow-sm">
+                    <div class="flex border-b text-center">
+                        <button onclick="switchTab('media')" id="tab-media-btn" class="flex-1 py-3 text-xs font-bold border-b-2">MEDIA</button>
+                        <button onclick="switchTab('links')" id="tab-links-btn" class="flex-1 py-3 text-xs font-bold border-b-2">TAUTAN</button>
+                        <button onclick="switchTab('docs')" id="tab-docs-btn" class="flex-1 py-3 text-xs font-bold border-b-2">DOKUMEN</button>
+                    </div>
+                    <div id="tab-content" class="p-0 min-h-[100px]"></div>
+                </div>
+
+                <div class="bg-white p-4 mb-2 shadow-sm text-center">
+                    <h3 class="font-medium text-gray-500 mb-3 uppercase text-[10px] tracking-widest">Menuju Hari Bahagia</h3>
+                    <div id="countdown" class="flex justify-center gap-6"></div>
+                </div>
+
+                <div class="bg-white shadow-sm mb-2">
+                    <div class="p-4 text-sm font-medium text-gray-500 border-b">3 Anggota</div>
+                    <div class="flex items-center px-4 py-3 gap-4 border-b">
+                        <img src="aditya.webp" class="w-12 h-12 rounded-full object-cover cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="flex-1"><div class="font-medium text-sm text-sky-500">Aditya Bayu Prasetyo</div><div class="text-xs text-gray-500">Mempelai Pria</div></div>
+                        <span class="text-[10px] text-[#008069] border border-[#008069] px-1 rounded">Admin</span>
+                    </div>
+                    <div class="flex items-center px-4 py-3 gap-4 border-b">
+                        <img src="amartha.webp" class="w-12 h-12 rounded-full object-cover cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="flex-1"><div class="font-medium text-sm text-pink-500">Amartha Ashfiana Nadhifa</div><div class="text-xs text-gray-500">Mempelai Wanita</div></div>
+                        <span class="text-[10px] text-[#008069] border border-[#008069] px-1 rounded">Admin</span>
+                    </div>
+                    <div class="flex items-center px-4 py-3 gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400"><i class="fas fa-user text-xl"></i></div>
+                        <div class="flex-1"><div class="font-medium text-sm text-gray-800">Sobat Kondangan (Anda)</div><div class="text-xs text-gray-500">Online</div></div>
                     </div>
                 </div>
-                <p class="text-xs text-gray-400 mt-4 border-t pt-2">Grup dibuat oleh <span class="text-sky-400">Aditya</span> & <span class="text-pink-400">Amartha</span>, 6 April 2025</p>
-            </div>
 
-            <div class="bg-white mb-2 shadow-sm">
-                <div class="flex border-b text-center">
-                    <button onclick="switchTab('media')" id="tab-media-btn" class="flex-1 py-3 text-xs font-bold border-b-2">MEDIA</button>
-                    <button onclick="switchTab('links')" id="tab-links-btn" class="flex-1 py-3 text-xs font-bold border-b-2">TAUTAN</button>
-                    <button onclick="switchTab('docs')" id="tab-docs-btn" class="flex-1 py-3 text-xs font-bold border-b-2">DOKUMEN</button>
+                <div class="bg-white p-4 mb-2 shadow-sm">
+                    <button onclick="openGift()" class="w-full bg-[#00a884] active:bg-[#008069] text-white py-3 rounded-md font-bold flex items-center justify-center gap-2">
+                        <i class="fas fa-gift"></i> Wedding Gift
+                    </button>
                 </div>
-                <div id="tab-content" class="p-0 min-h-[100px]"></div>
-            </div>
 
-            <div class="bg-white p-4 mb-2 shadow-sm text-center">
-                <h3 class="font-medium text-gray-500 mb-3 uppercase text-[10px] tracking-widest">Menuju Hari Bahagia</h3>
-                <div id="countdown" class="flex justify-center gap-6"></div>
-            </div>
-
-            <div class="bg-white shadow-sm mb-2">
-                <div class="p-4 text-sm font-medium text-gray-500 border-b">3 Anggota</div>
-                <div class="flex items-center px-4 py-3 gap-4 border-b">
-                    <img src="aditya.webp" class="w-12 h-12 rounded-full object-cover cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox(this.src)">
-                    <div class="flex-1"><div class="font-medium text-sm text-sky-500">Aditya Bayu Prasetyo</div><div class="text-xs text-gray-500">Mempelai Pria</div></div>
-                    <span class="text-[10px] text-[#008069] border border-[#008069] px-1 rounded">Admin</span>
+                <div class="bg-white shadow-sm mb-4">
+                    <div class="p-4 text-sm font-medium text-[#008069] border-b flex items-center justify-between">
+                        <span>Daftar Konfirmasi Kehadiran</span>
+                        <i class="fas fa-clipboard-list opacity-50"></i>
+                    </div>
+                    <div id="rsvp-list-container" class="divide-y max-h-[400px] overflow-y-auto no-scrollbar">
+                        <div class="p-8 text-center text-gray-400 italic text-xs">Memuat data kehadiran...</div>
+                    </div>
                 </div>
-                <div class="flex items-center px-4 py-3 gap-4 border-b">
-                    <img src="amartha.webp" class="w-12 h-12 rounded-full object-cover cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox(this.src)">
-                    <div class="flex-1"><div class="font-medium text-sm text-pink-500">Amartha Ashfiana Nadhifa</div><div class="text-xs text-gray-500">Mempelai Wanita</div></div>
-                    <span class="text-[10px] text-[#008069] border border-[#008069] px-1 rounded">Admin</span>
-                </div>
-                <div class="flex items-center px-4 py-3 gap-4">
-                    <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400"><i class="fas fa-user text-xl"></i></div>
-                    <div class="flex-1"><div class="font-medium text-sm text-gray-800">Sobat Kondangan (Anda)</div><div class="text-xs text-gray-500">Online</div></div>
-                </div>
-            </div>
-
-            <div class="bg-white p-4 mb-2 shadow-sm">
-                <button onclick="openGift()" class="w-full bg-[#00a884] active:bg-[#008069] text-white py-3 rounded-md font-bold flex items-center justify-center gap-2">
-                    <i class="fas fa-gift"></i> Wedding Gift
-                </button>
-            </div>
-
-            <div class="bg-white shadow-sm mb-4">
-                <div class="p-4 text-sm font-medium text-[#008069] border-b flex items-center justify-between">
-                    <span>Daftar Konfirmasi Kehadiran</span>
-                    <i class="fas fa-clipboard-list opacity-50"></i>
-                </div>
-                <div id="rsvp-list-container" class="divide-y max-h-[400px] overflow-y-auto no-scrollbar">
-                    <div class="p-8 text-center text-gray-400 italic text-xs">Memuat data kehadiran...</div>
-                </div>
-            </div>
-            <div class="p-10 text-center opacity-0">.</div>
+                <div class="p-10 text-center opacity-0">.</div>
+            </div> <!-- Penutup info-content -->
         </section>
     </div>
 
@@ -595,17 +607,20 @@
         // Efek header mengecil saat scroll di info screen
         const infoScreen = document.getElementById('info-screen');
         const smallHeader = document.getElementById('small-header');
+        const infoContent = document.getElementById('info-content');
         
-        if (infoScreen && smallHeader) {
+        if (infoScreen && smallHeader && infoContent) {
             infoScreen.addEventListener('scroll', function() {
                 const scrollTop = infoScreen.scrollTop;
                 
                 if (scrollTop > 150) {
                     smallHeader.classList.add('show');
                     smallHeader.classList.remove('hide');
+                    infoContent.classList.add('shifted');
                 } else {
                     smallHeader.classList.add('hide');
                     smallHeader.classList.remove('show');
+                    infoContent.classList.remove('shifted');
                 }
             });
         }
