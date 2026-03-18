@@ -132,9 +132,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
         
-        /* CSS untuk efek header mengecil ala WhatsApp */
-        
-        /* Header kecil yang muncul saat scroll */
         .info-header-small {
             height: 60px !important;
             background: white !important;
@@ -158,12 +155,10 @@
             transform: translateX(-50%) translateY(-100%);
         }
         
-        /* Header besar */
         #large-header {
             transition: opacity 0.3s ease;
         }
         
-        /* Class untuk memberi padding ke konten saat header kecil muncul */
         .info-content {
             transition: padding-top 0.3s ease;
         }
@@ -171,13 +166,12 @@
         .info-content.shifted {
             padding-top: 60px;
         }
-        
+
         #info-screen {
             scroll-behavior: smooth;
             position: relative;
         }
 
-        /* Tambahan untuk ikon back */
         .back-icon {
             color: #008069;
         }
@@ -228,7 +222,6 @@
         </section>
 
         <section id="info-screen" class="screen bg-[#f0f2f5] overflow-y-auto no-scrollbar relative">
-            <!-- Header KECIL yang muncul saat scroll - ala WhatsApp asli -->
             <div id="small-header" class="info-header-small flex items-center bg-white px-3 py-2 hide shadow-sm" style="max-width:480px;">
                 <div class="flex items-center cursor-pointer py-1 pr-3" onclick="backToChat()">
                     <i class="fas fa-arrow-left text-[#008069] text-xl mr-4"></i>
@@ -242,7 +235,6 @@
                 </div>
             </div>
 
-            <!-- HEADER BESAR -->
             <div id="large-header" class="relative">
                 <div class="absolute top-4 left-4 z-30 bg-black/20 w-8 h-8 rounded-full flex items-center justify-center text-white cursor-pointer" onclick="backToChat()">
                     <i class="fas fa-arrow-left"></i>
@@ -259,7 +251,6 @@
                 </div>
             </div>
 
-            <!-- BUNGKUS SEMUA KONTEN -->
             <div id="info-content" class="info-content">
                 <div class="bg-white p-5 mb-2 shadow-sm">
                     <p class="text-[#008069] font-medium mb-2">Bismillahirrahmanirrahim</p>
@@ -328,7 +319,7 @@
                     </div>
                 </div>
                 <div class="p-10 text-center opacity-0">.</div>
-            </div> <!-- Penutup info-content -->
+            </div>
         </section>
     </div>
 
@@ -560,7 +551,7 @@
                             <div class="bg-red-50 w-10 h-10 rounded-md flex items-center justify-center text-red-500 shrink-0 border border-red-100"><i class="fas fa-file-pdf"></i></div>
                             <div class="text-xs"><b>E-Undangan_Aditya_Amartha.pdf</b><br><span class="text-gray-400 italic">Klik untuk buka</span></div>
                         </a>
-                        <a href="https://www.canva.com/design/DAF..." target="_blank" class="p-4 flex items-center gap-4 border-b bg-white active:bg-gray-50 transition-colors no-underline text-inherit cursor-pointer">
+                        <a href="https://heyzine.com/flip-book/f4d0cbeb9d.html" target="_blank" class="p-4 flex items-center gap-4 border-b bg-white active:bg-gray-50 transition-colors no-underline text-inherit cursor-pointer">
                             <div class="bg-blue-50 w-10 h-10 rounded-md flex items-center justify-center text-blue-600 shrink-0 border border-blue-100"><i class="fas fa-palette"></i></div>
                             <div class="text-xs"><b>Our Love Story</b><br><span class="text-gray-400 italic">Klik untuk lihat cerita kami</span></div>
                         </a>
@@ -598,7 +589,6 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Efek header mengecil saat scroll di info screen
         const infoScreen = document.getElementById('info-screen');
         const smallHeader = document.getElementById('small-header');
         const largeHeader = document.getElementById('large-header');
